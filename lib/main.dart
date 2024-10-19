@@ -5,10 +5,10 @@ import 'package:blinking_text/blinking_text.dart';
 
 void main() {
   return runApp(
-    MaterialApp(
+    const MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        body: const DicePage(),
+        body: DicePage(),
       ),
     ),
   );
@@ -32,8 +32,8 @@ class _DicePageState extends State<DicePage> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.only(top: 88),
-      decoration: BoxDecoration(
+      padding: const EdgeInsets.only(top: 80),
+      decoration: const BoxDecoration(
         image: DecorationImage(
           image: AssetImage('images/bg.png'),
           fit: BoxFit.cover,
@@ -41,7 +41,7 @@ class _DicePageState extends State<DicePage> {
       ),
       child: Column(
         children: [
-          Center(
+          const Center(
             child: Text(
               "DICEE",
               style: TextStyle(
@@ -52,7 +52,7 @@ class _DicePageState extends State<DicePage> {
               textAlign: TextAlign.center,
             ),
           ),
-          Center(
+          const Center(
             child: BlinkText(
               "TAP TO ROLL!",
               style: TextStyle(
@@ -64,12 +64,13 @@ class _DicePageState extends State<DicePage> {
             ),
           ),
           Container(
-            margin: const EdgeInsets.only(left: 100),
+            padding: EdgeInsets.only(left: 100, ),
             child: Center(
               child: Stack(
                 children: [
                   Positioned(
                     right: 100,
+                    bottom: 10,
                     child: TextButton(
                       onPressed: rollDice,
                       child: Image.asset('images/a$leftDice.png'),
@@ -96,22 +97,23 @@ class _DicePageState extends State<DicePage> {
               ),
             ),
           ),
-          Container(
-            child: Text(
-              compare,
-              style: const TextStyle(
-                fontFamily: 'Minecraft',
-                fontSize: 28,
-                color: Colors.white,
-              ),
+          Text(
+            compare,
+            style: const TextStyle(
+              fontFamily: 'Minecraft',
+              fontSize: 28,
+              color: Colors.white,
             ),
           ),
           Container(
-            margin: EdgeInsets.only(top: 40),
+            margin: const EdgeInsets.only(top: 40),
             child: TextButton(
               onPressed: toggleRepeatRoll,
-              child: Text("Autoplay: ${_timer == null || !_timer!.isActive? 'OFF' : 'ON'}",
-                style: TextStyle(fontFamily: 'Minecraft', fontSize: 40, color: Colors.white),),
+              child: Text(
+                "Autoplay: ${_timer == null || !_timer!.isActive ? 'OFF' : 'ON'}",
+                style: const TextStyle(
+                    fontFamily: 'Minecraft', fontSize: 40, color: Colors.white),
+              ),
             ),
           ),
         ],
@@ -152,7 +154,6 @@ class _DicePageState extends State<DicePage> {
         rollDice();
       });
     } else {
-
       _timer?.cancel();
     }
   }
